@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>Tugas Implementasi Interface</title>
+</head>
+<body>
+	<form name="Form" id="tugasku" onsubmit="return validateForm()" method="POST">
+		<fieldset>
+		<legend>Form</legend>
+		<p>
+				Nama: Tb Fauzan Rachman<br>
+				NIM: 3411181189<br>
+				Kelas: DSE-C<br>
+		</p>
+		<table border="0" align="left">
+			<tr>
+				<td> <label>Username:</label> </td>
+				<td> <input type="text" name="username" id="username" placeholder="username"> </td>
+			</tr>
+			
+			<tr>
+				<td> <label>Password:</label> </td>
+				<td> <input type="password" name="password" id="pass" placeholder="Password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"> </td>
+			</tr>
+			
+			<tr>
+				<td> <label>Konfirmasi Password:</label> </td>
+				<td> <input type="password" name="repeat" id="repeat" placeholder="Ulangi Password"> </td>
+			</tr>
+		
+			<tr>
+				<td> <label>Email:</label> </td>
+				<td> <input type="text" name="email" id="email" placeholder="Email"> </td>
+			</tr>
+			
+			<tr>
+				<td> <label>Nomor Telepon</label> </td>
+				<td> <input type="text" name="telp" id="telp" placeholder="Nomor Telpon"> </td>
+			</tr>
+		
+			<tr>
+				<td> <label>Alamat:</label> </td>
+				<td> <textarea id="alamat" style="width: 167px;"></textarea> </td>
+			</tr>
+			
+			<tr>
+				<td> <input type="submit" name="" value="Submit" onclick="ValidateEmail(document.Form.email)"> </td>
+			</tr>
+		</table>
+		</fieldset>
+	</form>
+	
+	
+	<script type="text/javascript">
+	
+		function validateForm(){
+			var user = document.Form.username.value;
+			var kode = document.Form.password.value;
+			var konfirmkode = document.Form.repeat.value;
+			var nomorTelp = document.Form.telp.value;
+			var address = document.Form.alamat.value;
+			
+			if((user.length <3) || (user.length>=15)){
+				alert("Username tidak boleh kurang dari 3 dan lebih dari 15");
+				return false;
+			}
+			if(kode.length<4){
+				alert("Password minimal 4 digit");
+				return false;
+			}
+			if(konfirmkode!=kode){
+				alert("Password tidak sesuai!");
+			}
+			if(isNaN(nomorTelp)){
+				alert("Telepon harus berupa angka");
+				return false
+			}
+			if((nomorTelp.length<10) || (nomorTelp.length>12)){
+				alert("Nomor Telepon harus 10-12 digit");
+				return false;
+			}
+			if(address==""){
+				alert("Alamat tidak boleh kosong");
+			}else{
+				return true;
+			}
+		}
+		
+		function ValidateEmail(inputText){
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+			
+			if(inputText.value.match(mailformat)){
+				document.Form.email.focus();
+				return true;
+			}else{
+				alert("Alamat email tidak valid!");
+				document.Form.email.focus();
+				return false;
+			}	
+		}
+		
+		
+	</script>
+</body>
+</html>
